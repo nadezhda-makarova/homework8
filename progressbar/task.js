@@ -5,12 +5,12 @@ const form = document.getElementById('form');
 
 send.addEventListener('click', (e) => {
   e.preventDefault();
-  const data = document.getElementById('file').value;
+  const data = new FormData(document.getElementById('form'))
   let xhr = new XMLHttpRequest();
-  xhr.open('post', 'https://netology-slow-rest.herokuapp.com/upload.php', true, data);
-  xhr.onprogress = (e) => {
-    progress.value = e.loaded / 100000000;
-  };
-  xhr.send();
+  xhr.open('post', 'https://netology-slow-rest.herokuapp.com/upload.php', true);
   xhr.responseType = 'json';
+  xhr.upload.onprogress = (e) => {
+    progress.value = e.loaded * 100 / e.total;
+  };
+  xhr.send(data);
 });
