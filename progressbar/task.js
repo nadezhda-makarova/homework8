@@ -10,7 +10,7 @@ send.addEventListener('click', (e) => {
   xhr.open('post', 'https://netology-slow-rest.herokuapp.com/upload.php', true);
   xhr.responseType = 'json';
   xhr.upload.onprogress = (e) => {
-    progress.value = e.loaded * 100 / e.total;
+    progress.value = e.loaded / e.total;
   };
   xhr.send(data);
 });
